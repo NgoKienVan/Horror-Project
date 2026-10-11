@@ -7,14 +7,22 @@ public class PlayerInputReader : MonoBehaviour
     [SerializeField] private InputActionReference moveAction;
     [SerializeField] private InputActionReference lookAction;
     [SerializeField] private InputActionReference jumpAction;
+
+    [SerializeField] private InputActionReference crouchAction;
+    [SerializeField] private InputActionReference sprintAction;
     [SerializeField] private InputActionReference cursorToggleAction;
     [SerializeField] private InputActionReference clickAction;
+
     
     public Vector2 MoveInput => moveAction.action.ReadValue<Vector2>();
     
     public Vector2 LookInput => lookAction.action.ReadValue<Vector2>();
     
     public bool JumpPressed => jumpAction.action.WasPressedThisFrame();
+    
+    public bool SprintHeld => sprintAction.action.IsPressed();
+    
+    public bool CrouchPressed => crouchAction.action.WasPressedThisFrame();
     
     public bool CursorTogglePressed => cursorToggleAction.action.WasPressedThisFrame();
     
@@ -35,6 +43,9 @@ public class PlayerInputReader : MonoBehaviour
         SetAction(moveAction, enabled);
         SetAction(lookAction, enabled);
         SetAction(jumpAction, enabled);
+        
+        SetAction(sprintAction, enabled);
+        SetAction(crouchAction, enabled);
         SetAction(cursorToggleAction, enabled);
         SetAction(clickAction, enabled);
     }
