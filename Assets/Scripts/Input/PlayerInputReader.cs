@@ -3,13 +3,17 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputReader : MonoBehaviour
 {
-    [Header("Input Actions")]
+    [Header("Basic Actions")]
     [SerializeField] private InputActionReference moveAction;
     [SerializeField] private InputActionReference lookAction;
     [SerializeField] private InputActionReference jumpAction;
-
+    
+    [Header("Advanced Actions")]
+    [SerializeField] private InputActionReference proneAction;
     [SerializeField] private InputActionReference crouchAction;
     [SerializeField] private InputActionReference sprintAction;
+    
+    [Header("Camera Actions")]
     [SerializeField] private InputActionReference cursorToggleAction;
     [SerializeField] private InputActionReference clickAction;
 
@@ -23,6 +27,8 @@ public class PlayerInputReader : MonoBehaviour
     public bool SprintHeld => sprintAction.action.IsPressed();
     
     public bool CrouchPressed => crouchAction.action.WasPressedThisFrame();
+    
+    public bool PronePressed => proneAction.action.WasPressedThisFrame();
     
     public bool CursorTogglePressed => cursorToggleAction.action.WasPressedThisFrame();
     
@@ -46,6 +52,7 @@ public class PlayerInputReader : MonoBehaviour
         
         SetAction(sprintAction, enabled);
         SetAction(crouchAction, enabled);
+        SetAction(proneAction, enabled);
         SetAction(cursorToggleAction, enabled);
         SetAction(clickAction, enabled);
     }
